@@ -59,7 +59,7 @@ async updateUser(req,res){
             { runValidators: true, new: true }
     
         );
-        if (!course){
+        if (!user){
             res.status(404).json({message: 'No User with this ID'});
         }
         res.json(user);
@@ -88,4 +88,21 @@ async deleteUser(req,res){
 
 
 //Friends??????
+
+async addFriend(req,res){
+    try{
+        const user = await User.findOneAndUpdate({_id:req.params.userId},{$addToSet:{friends:req.params.friendId}},{new:true});
+        res.json(user);
+    }catch(err){
+        res.status(500);
+    }
+},
+async deleteFriend(req,res){
+    try{
+        const user = await User.findOneAndUpdate({_id:req.params.userId},{$pull:{friends:req.params.friendId}},{new:true});
+        res.json(user);
+    }catch(err){
+        res.status(500);
+    }
+}
 };

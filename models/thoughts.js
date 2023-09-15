@@ -1,4 +1,5 @@
 const {Schema, model} = require('mongoose');
+const reactionSchema = require('./reaction');
 
 const thoughtSchema = new Schema(
     {
@@ -14,6 +15,7 @@ const thoughtSchema = new Schema(
             default: Date.now,
             //What is a getter method?
             //Need to format the timestamp on query
+            get:timestamp=>timestamp,
         },
         username:{
             type:String,
@@ -21,9 +23,7 @@ const thoughtSchema = new Schema(
         },
         reactions:[
             {
-               //array of nested documents created with the reaction schema 
-               //type: String,
-               //reactionSchema
+               reactionSchema
                
             },
         ],
@@ -35,4 +35,5 @@ thoughtSchema
  .virtual('reactionCount').get(function(){return this.reactions.length})
 
 const Thought = model('thought', thoughtSchema);
-module.exports = thoughtSchema;
+
+module.exports = Thought;
