@@ -84,11 +84,11 @@ module.exports = {
   // api/thoughts/:thoughtId/reactions ????????????????????
   async createReaction(req, res) {
     try {
-      const reaction = await Thought.create(
+      const reaction = await Thought.findOneAndUpdate(
         {_id:req.params.thoughtId},
         {$addToSet:
           {reactions:
-            {reactionBody:req.body.reactionBody,username:req.body.username},},},{new:true});
+            {reactionBody:req.body.reactionBody,username:req.body.username},},},{runValidators:true,new:true});
       res.status(200).json(reaction);
     } catch (err) {
       console.log(err);
