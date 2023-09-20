@@ -84,8 +84,12 @@ module.exports = {
   // api/thoughts/:thoughtId/reactions ????????????????????
   async createReaction(req, res) {
     try {
-      const reaction = await Thought.create({ _id: req.params.reactionId });
-      res.json(reaction);
+      const reaction = await Thought.create(
+        {_id:req.params.thoughtId},
+        {$addToSet:
+          {reactions:
+            {reactionBody:req.body.reactionBody,username:req.body.username},},},{new:true});
+      res.status(200).json(reaction);
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -93,10 +97,9 @@ module.exports = {
   },
   async deleteReaction(req, res) {
     try {
-      const reaction = await Thought.findOneAndRemove({
-        _id: req.params.reactionId,
-      });
-      res.json({ message: "Reaction Deleted" });
+      const reaction = await Thought.findOneAndRemove(
+        {_id:req.params.thoughtId},{$pull:{reactionId:req.params.reactionId}},{new:true});
+      res.json(reaction,{ message: "Reaction Deleted" });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
