@@ -13,9 +13,6 @@ const thoughtSchema = new Schema(
         createdAt:{
             type: Date,
             default: Date.now,
-            //What is a getter method?
-            //Need to format the timestamp on query
-            get:timestamp=>timestamp,
         },
         username:{
             type:String,

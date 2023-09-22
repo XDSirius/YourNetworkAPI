@@ -85,21 +85,38 @@ module.exports = {
   async createReaction(req, res) {
     try {
       const reaction = await Thought.findOneAndUpdate(
-        {_id:req.params.thoughtId},
-        {$addToSet:
-          {reactions:
-            {reactionBody:req.body.reactionBody,username:req.body.username},},},{runValidators:true,new:true});
+        { _id: req.params.thoughtId },
+        { $addToSet: { reactions: req.body } },
+        { runValidators: true, new: true }
+      );
       res.status(200).json(reaction);
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
   },
+  // async createReaction(req, res) {
+  //   try {
+  //     const reaction = await Thought.findOneAndUpdate(
+  //       {_id:req.params.thoughtId},
+  //       {$addToSet:
+  //         {reactions:
+  //           {reactionBody:req.body.reactionBody,username:req.body.username},},},{runValidators:true,new:true});
+  //     res.status(200).json(reaction);
+  //   } catch (err) {
+  //     console.log(err);
+  //     res.status(500).json(err);
+  //   }
+  // },
   async deleteReaction(req, res) {
     try {
+      console.log("!!!", req.params.thoughtId, req.body.reactionId);
       const reaction = await Thought.findOneAndUpdate(
-        {_id:req.params.thoughtId},{$pull:{reactions:{reactionId:req.params.reactionId}}},{new:true});
-      res.json(reaction,{ message: "Reaction Deleted" });
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { reactionId: req.body.reactionId } } },
+        { runValidators: true, new: true }
+      );
+      res.json(reaction);
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
