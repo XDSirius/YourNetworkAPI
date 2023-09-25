@@ -81,7 +81,7 @@ module.exports = {
     }
   },
 
-  // api/thoughts/:thoughtId/reactions ????????????????????
+  // api/thoughts/:thoughtId/reactions
   async createReaction(req, res) {
     try {
       const reaction = await Thought.findOneAndUpdate(
@@ -95,19 +95,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // async createReaction(req, res) {
-  //   try {
-  //     const reaction = await Thought.findOneAndUpdate(
-  //       {_id:req.params.thoughtId},
-  //       {$addToSet:
-  //         {reactions:
-  //           {reactionBody:req.body.reactionBody,username:req.body.username},},},{runValidators:true,new:true});
-  //     res.status(200).json(reaction);
-  //   } catch (err) {
-  //     console.log(err);
-  //     res.status(500).json(err);
-  //   }
-  // },
+ 
   async deleteReaction(req, res) {
     try {
       console.log("!!!", req.params.thoughtId, req.body.reactionId);
