@@ -26,13 +26,13 @@ https://watch.screencastify.com/v/EJZ10GNSTAl5l8PPTOo0
 
  
 ### Users
-[Users](./imgs/users.png)
+![Users](./imgs/users.png)
 You will be able to create, delete, update, and see all users with this endpoint `http://localhost:3001/api/users/` using the following:   
- - `POST`  To add a user you need the JSON body to contain this information:\
-  `{"username": "obi","email": "obi@gmail.com"}`\
- - `GET` By having the endpoint, no other information is required and you may submit it as is with the `GET` request and you will get all users back\
- - `DELETE` To delete the user, you will need to input the userid of the user you want to delete like so: `http://localhost:3001/api/users/:userId` \
- - `PUT` To update a user, you will need to have the id of the user you want to update like so: `http://localhost:3001/api/users/:userId` and in the JSON body you need to have the following with the updated information `{"username": "obi","email": "obi@gmail.com"}` \
+ - `POST`  To add a user you need the JSON body to contain this information:
+  `{"username": "obi","email": "obi@gmail.com"}`
+ - `GET` By having the endpoint, no other information is required and you may submit it as is with the `GET` request and you will get all users back
+ - `DELETE` To delete the user, you will need to input the userid of the user you want to delete like so: `http://localhost:3001/api/users/:userId` 
+ - `PUT` To update a user, you will need to have the id of the user you want to update like so: `http://localhost:3001/api/users/:userId` and in the JSON body you need to have the following with the updated information `{"username": "obi","email": "obi@gmail.com"}` 
 
 ### Thoughts
 [Thoughts](./imgs/thoughts.png)
