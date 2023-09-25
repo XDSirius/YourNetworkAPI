@@ -44,8 +44,19 @@ You will be able to create, delete, update, and see all thoughts with this endpo
  - `PUT` To update a thought, you will need to have the id of the user you want to update like so: `http://localhost:3001/api/thoughts/:thoughtId` and in the JSON body you need to have the following with the updated information `{"thoughtText": "bark","username": "obi"}` 
 ### Friends
 ![Friends](./imgs/friends.png)
+You will be able to add and delete friends with this endpoint: `http://localhost:3001/api/users/userId/friends/friendId`
+
+- `POST` In order to add a friend you need to add the userId of the user you are wanting to add the friend to and the friend id of the friend you want to add to the end of the url.
+
+- `DELETE` Like `POST` is the same process only you are deleting instead of adding. 
+
 ### Reactions
 ![Reactions](./imgs/reactions.png)
+You will be able to add and delete reactions with this endpoint : `http://localhost:3001/api/thoughts/thoughtId/reactions`
+
+- `POST` To create a reaction, you need the thought ID of the thought you want to add a reaction too. Then, in the JSON body, add the username and reaction you want added like so: `{"username":"onion", "reactionBody":"meow"}`
+
+- `DELETE` To delete a reaction, you need the thought ID of the thought you want the reaction removed from. Then in the JSON body add the reaction id you want deleted. `{"reactionId": "reactionId"}`
 
 
 
